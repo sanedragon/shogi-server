@@ -1,0 +1,17 @@
+# IDEs
+.vscode/
+.idea/
+
+# Javascript
+node_modules/
+app/assets/javascripts/build/
+public/bundles/
+
+# Play framework
+logs
+project/project
+project/target
+target
+tmp
+dist
+.cache
