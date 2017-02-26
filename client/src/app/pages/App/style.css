@@ -1,0 +1,19 @@
+.AppContainer {
+  padding: 0;
+  margin: 0;
+}
+
+.AppContainer .game {
+  display: flex;
+  flex: row;
+}
+
+.AppContainer .game > :first-child {
+  align-self: flex-start;
+  margin-right: 10px;
+}
+
+.AppContainer .game > :last-child {
+  align-self: flex-end;
+  margin-left: 10px;
+}

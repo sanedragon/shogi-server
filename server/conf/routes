@@ -1,0 +1,8 @@
+
+GET /api/game controllers.GameApiController.game(id: Int = 0)
+GET /api/game/:id controllers.GameApiController.game(id: Int)
+
+GET /public/*file controllers.Assets.versioned(path="/public", file: Asset)
+
+GET / controllers.Application.index(route = "")
+GET /*route controllers.Application.index(route)

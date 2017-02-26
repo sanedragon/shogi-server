@@ -1,0 +1,80 @@
+.shogiBoard {
+  display: flex;
+  flex-direction: column;
+}
+
+.shogiBoard .rank {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.shogiBoard .rank div {
+  width: 50px;
+  height: 57px;
+  border: 1px solid gray;
+  background-size: contain !important;
+}
+
+.shogiBoard .rank div.player2 {
+  transform: rotate(180deg);
+}
+
+.shogiBoard .rank div.lance {
+  background: url(./img/Shougi_no_koma_kyousha.svg);
+}
+
+.shogiBoard .rank div.lance.promoted {
+  background: url(./img/Shougi_no_koma_narikyou.svg);
+}
+
+.shogiBoard .rank div.knight {
+  background: url(./img/Shougi_no_koma_keima.svg);
+}
+
+.shogiBoard .rank div.knight.promoted {
+  background: url(./img/Shougi_no_koma_narikei.svg);
+}
+
+.shogiBoard .rank div.silver {
+  background: url(./img/Shougi_no_koma_ginshou.svg);
+}
+
+.shogiBoard .rank div.silver.promoted {
+  background: url(./img/Shougi_no_koma_narigin.svg);
+}
+
+.shogiBoard .rank div.gold {
+  background: url(./img/Shougi_no_koma_ginshou.svg);
+}
+
+.shogiBoard .rank div.king {
+  background: url(./img/Shougi_no_koma_oushou.svg);
+}
+
+.shogiBoard .rank div.king.player2 {
+  background: url(./img/Shougi_no_koma_gyokushou.svg);
+}
+
+.shogiBoard .rank div.bishop {
+  background: url(./img/Shougi_no_koma_kakugyou.svg);
+}
+
+.shogiBoard .rank div.bishop.promoted {
+  background: url(./img/Shougi_no_koma_ryuuma.svg);
+}
+
+.shogiBoard .rank div.rook {
+  background: url(./img/Shougi_no_koma_hisha.svg);
+}
+
+.shogiBoard .rank div.rook.promoted {
+  background: url(./img/Shougi_no_koma_ryuuou.svg);
+}
+
+.shogiBoard .rank div.pawn {
+  background: url(./img/Shougi_no_koma-fuhyou.svg);
+}
+
+.shogiBoard .rank div.pawn.promoted {
+  background: url(./img/Shougi_no_koma_tokin.svg);
+}
