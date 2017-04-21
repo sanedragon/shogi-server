@@ -8,29 +8,29 @@ class JsonConvertersSpec extends FlatSpec with Matchers {
   behavior of "JsonConverters"
 
   it should "convert non-promotable pieces to JSON" in {
-    val piece = King(PlayerOne)
+    val piece = King(Black)
     val expectedJson = Json.obj(
       "type" -> "king",
-      "player" -> "PlayerOne"
+      "player" -> "black"
     )
 
     Json.toJson(piece) shouldBe expectedJson
   }
 
   it should "convert promotable pieces to JSON" in {
-    val lance = Lance(PlayerTwo)
+    val lance = Lance(White)
     val lanceJson = Json.obj(
       "type" -> "lance",
-      "player" -> "PlayerTwo",
+      "player" -> "white",
       "promoted" -> false
     )
 
     Json.toJson(lance) shouldBe lanceJson
 
-    val promotedLance = Lance(PlayerTwo, promoted=true)
+    val promotedLance = Lance(White, promoted=true)
     val promotedLanceJson = Json.obj(
       "type" -> "lance",
-      "player" -> "PlayerTwo",
+      "player" -> "white",
       "promoted" -> true
     )
 
@@ -48,8 +48,8 @@ class JsonConvertersSpec extends FlatSpec with Matchers {
   }
 
   it should "convert a board state to JSON" in {
-    val promotedPawn = Pawn(PlayerTwo, promoted=true)
-    val king = King(PlayerTwo)
+    val promotedPawn = Pawn(White, promoted=true)
+    val king = King(White)
     val pieces = Map[Location, Piece](
       Location(4, 2) -> promotedPawn,
       Location(5, 9) -> king
@@ -72,13 +72,13 @@ class JsonConvertersSpec extends FlatSpec with Matchers {
   }
 
   it should "convert pieces in hand to JSON" in {
-    val pih = PiecesInHand() + Pawn(PlayerOne) + Pawn(PlayerOne) + Lance(PlayerTwo)
+    val pih = PiecesInHand() + Pawn(Black) + Pawn(Black) + Lance(White)
     val json = Json.toJson(pih).as[JsArray]
 
     val expectedPawnJson = Json.obj(
       "piece" -> Json.obj(
         "type" -> "pawn",
-        "player" -> "PlayerOne",
+        "player" -> "black",
         "promoted" -> false
       ),
       "number" -> 2
@@ -86,7 +86,7 @@ class JsonConvertersSpec extends FlatSpec with Matchers {
     val expectedLanceJson = Json.obj(
       "piece" -> Json.obj(
         "type" -> "lance",
-        "player" -> "PlayerTwo",
+        "player" -> "white",
         "promoted" -> false
       ),
       "number" -> 1
@@ -112,10 +112,10 @@ class JsonConvertersSpec extends FlatSpec with Matchers {
   }
 
   it should "convert game state to JSON" in {
-    val gameState = GameState(PlayerTwo, ShogiBoard(Map()), PiecesInHand())
+    val gameState = GameState(White, ShogiBoard(Map()), PiecesInHand())
     val json = Json.toJson(gameState)
 
-    (json \ "playerToMove").get.as[String] shouldEqual "PlayerTwo"
+    (json \ "playerToMove").get.as[String] shouldEqual "white"
     (json \ "board") shouldBe a [JsDefined]
     (json \ "piecesInHand") shouldBe a [JsDefined]
   }

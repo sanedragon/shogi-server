@@ -22,7 +22,7 @@ object SfenParser {
     case (code) => Seq(Some(buildUnpromotedPiece(code)))
   })
   private def buildUnpromotedPiece(pieceCode: Char): Piece = {
-    val player = if (pieceCode.isUpper) PlayerOne else PlayerTwo
+    val player = if (pieceCode.isUpper) Black else White
     pieceCode.toLower match {
       case 'k' => King(player)
       case 'g' => Gold(player)
@@ -38,7 +38,7 @@ object SfenParser {
   lazy val promotablePieceCode: Parser[Char] = CharIn("sSnNlLrRbBpP").!.map(_(0))
   lazy val promotable: Parser[Seq[Option[PromotablePiece]]] = P( promotedFlag ~ promotablePieceCode ).map({
     case (promoted, pieceCode) =>
-      val player = if (pieceCode.isUpper) PlayerOne else PlayerTwo
+      val player = if (pieceCode.isUpper) Black else White
       Seq(Some(pieceCode.toLower match {
         case 's' => Silver(player, promoted)
         case 'n' => Knight(player, promoted)
@@ -49,7 +49,7 @@ object SfenParser {
       }))
   })
 
-  lazy val playerToMove: Parser[Player.Value] = P( CharIn("BW").! ).map((p) => if (p == "B") PlayerOne else PlayerTwo)
+  lazy val playerToMove: Parser[Player.Value] = P( CharIn("BW").! ).map((p) => if (p == "B") Black else White)
 
   lazy val piecesInHand = P( emptyPih | inHandPieces )
   lazy val emptyPih: Parser[PiecesInHand] = P( "-".! ).map((_) => PiecesInHand())

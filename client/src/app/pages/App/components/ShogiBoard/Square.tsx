@@ -38,7 +38,7 @@ export class Square extends React.Component<IProps, {}> {
             const classes = classNames(
                 pieceStyle(piece),
                 {
-                    [style.player2]: piece.player === 'PlayerTwo',
+                    [style.player2]: piece.player === 'white',
                     [style.promoted]: piece.type !== 'king' && piece.type !== 'gold' && piece.promoted
                 }
             );

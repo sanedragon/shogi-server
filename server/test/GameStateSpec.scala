@@ -9,7 +9,7 @@ class GameStateSpec extends FunSpec with Matchers {
       it("should build the initial state") {
         val initialSfen = "lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL B -"
         val state = GameState.fromSfen(initialSfen);
-        state shouldEqual GameState(PlayerOne, ShogiBoard.initialSetup(), PiecesInHand())
+        state shouldEqual GameState(Black, ShogiBoard.initialSetup(), PiecesInHand())
       }
 
       it("should explode on bad input") {

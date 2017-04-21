@@ -15,7 +15,7 @@ object ShogiBoard {
   def initialSetup(): ShogiBoard = {
     val pieces = mutable.Map[Location,Piece]()
     for (player <- Player.values) {
-      val backRank = if (player == PlayerOne) 9 else 1
+      val backRank = if (player == Black) 9 else 1
       pieces += Location(backRank, 9) -> Lance(player)
       pieces += Location(backRank, 1) -> Lance(player)
       pieces += Location(backRank, 8) -> Knight(player)
@@ -26,16 +26,16 @@ object ShogiBoard {
       pieces += Location(backRank, 4) -> Gold(player)
       pieces += Location(backRank, 5) -> King(player)
 
-      val frontRank = if (player == PlayerOne) 7 else 3
+      val frontRank = if (player == Black) 7 else 3
       for (file <- 1 to 9) {
         pieces += Location(frontRank, file) -> Pawn(player)
       }
     }
 
-    pieces += Location(2,2) -> Bishop(PlayerTwo)
-    pieces += Location(2,8) -> Rook(PlayerTwo)
-    pieces += Location(8,2) -> Rook(PlayerOne)
-    pieces += Location(8,8) -> Bishop(PlayerOne)
+    pieces += Location(2,2) -> Bishop(White)
+    pieces += Location(2,8) -> Rook(White)
+    pieces += Location(8,2) -> Rook(Black)
+    pieces += Location(8,8) -> Bishop(Black)
 
     apply(Map.empty ++ pieces) // Make the map immutable
   }

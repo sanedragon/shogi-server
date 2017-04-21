@@ -61,11 +61,11 @@ class App extends React.Component<IProps, any> {
             return (
                 <div className={style.game}>
                     <PiecesInHand piecesInHand={this.props.piecesInHand}
-                                    player="PlayerTwo"
+                                    player="white"
                                     topToBottom={false} />
                     <ShogiBoard board={this.props.board} />
                     <PiecesInHand piecesInHand={this.props.piecesInHand}
-                                    player="PlayerOne"
+                                    player="black"
                                     topToBottom={true} />
                 </div>
             );

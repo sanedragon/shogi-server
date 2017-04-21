@@ -6,6 +6,10 @@ object JsonConverters {
 
   implicit val locationWrites = Json.writes[Location]
 
+  implicit val playerWrites = new Writes[Player.Value] {
+    def writes(p: Player.Value): JsString = JsString(p.toString().toLowerCase())
+  }
+
   implicit val pieceWrites = new Writes[Piece] {
     def writes(p: Piece): JsObject = {
       val writes = Json.obj(

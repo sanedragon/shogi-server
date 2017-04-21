@@ -8,22 +8,22 @@ class PiecesSpec extends FlatSpec with Matchers {
   behavior of "Pieces"
 
   it should "convert pieces to names" in {
-    pieceName(Pawn(PlayerOne)) shouldBe "pawn"
-    pieceName(Bishop(PlayerOne)) shouldBe "bishop"
-    pieceName(Rook(PlayerOne)) shouldBe "rook"
-    pieceName(Lance(PlayerOne)) shouldBe "lance"
-    pieceName(Knight(PlayerOne)) shouldBe "knight"
-    pieceName(Silver(PlayerOne)) shouldBe "silver"
-    pieceName(Gold(PlayerOne)) shouldBe "gold"
-    pieceName(King(PlayerOne)) shouldBe "king"
+    pieceName(Pawn(Black)) shouldBe "pawn"
+    pieceName(Bishop(Black)) shouldBe "bishop"
+    pieceName(Rook(Black)) shouldBe "rook"
+    pieceName(Lance(Black)) shouldBe "lance"
+    pieceName(Knight(Black)) shouldBe "knight"
+    pieceName(Silver(Black)) shouldBe "silver"
+    pieceName(Gold(Black)) shouldBe "gold"
+    pieceName(King(Black)) shouldBe "king"
   }
 
   it should "use the same name for promoted and non-promoted pieces" in {
-    pieceName(Pawn(PlayerOne)) should equal (pieceName(Pawn(PlayerOne, true)))
-    pieceName(Bishop(PlayerOne)) should equal (pieceName(Bishop(PlayerOne, true)))
-    pieceName(Rook(PlayerOne)) should equal (pieceName(Rook(PlayerOne, true)))
-    pieceName(Lance(PlayerOne)) should equal (pieceName(Lance(PlayerOne, true)))
-    pieceName(Knight(PlayerOne)) should equal (pieceName(Knight(PlayerOne, true)))
-    pieceName(Silver(PlayerOne)) should equal (pieceName(Silver(PlayerOne, true)))
+    pieceName(Pawn(Black)) should equal (pieceName(Pawn(Black, true)))
+    pieceName(Bishop(Black)) should equal (pieceName(Bishop(Black, true)))
+    pieceName(Rook(Black)) should equal (pieceName(Rook(Black, true)))
+    pieceName(Lance(Black)) should equal (pieceName(Lance(Black, true)))
+    pieceName(Knight(Black)) should equal (pieceName(Knight(Black, true)))
+    pieceName(Silver(Black)) should equal (pieceName(Silver(Black, true)))
   }
 }
