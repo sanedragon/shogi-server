@@ -5,6 +5,14 @@ import scala.collection.mutable
 
 final case class Location(rank: Int, file: Int) {
   require(rank >= 1 && rank <= 9 && file >= 1 && file <= 9)
+
+  def +(d: (Int, Int)): Option[Location] = {
+    val (dr, df) = d
+    if (rank + dr > 9 || rank + dr < 1 || file + df > 9 || file + df < 1)
+      None
+    else
+      Some(Location(rank + dr, file + df))
+  }
 }
 
 object Location {

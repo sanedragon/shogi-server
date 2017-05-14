@@ -16,6 +16,8 @@ case class Lance(player: Player.Value, promoted: Boolean = false) extends Promot
 case class Pawn(player: Player.Value, promoted: Boolean = false) extends PromotablePiece
 
 object Piece {
+  def unapply(p: Piece): Option[Player.Value] = Some(p.player)
+
   def pieceName(p: Piece): String = p match {
     case Pawn(_, _) => "pawn"
     case Bishop(_, _) => "bishop"
@@ -36,4 +38,18 @@ object Piece {
     case Silver(player, true) => Silver(player)
     case _ => p
   }
+
+  def promotedPiece(p: Piece): Piece = p match {
+    case Pawn(player, _) => Pawn(player, promoted = true)
+    case Rook(player, _) => Rook(player, promoted = true)
+    case Bishop(player, _) => Bishop(player, promoted = true)
+    case Lance(player, _) => Lance(player, promoted = true)
+    case Knight(player, _) => Knight(player, promoted = true)
+    case Silver(player, _) => Silver(player, promoted = true)
+    case _ => p
+  }
+}
+
+object PromotablePiece {
+  def unapply(p: PromotablePiece): Option[(Player.Value, Boolean)] = Some(p.player, p.promoted)
 }
