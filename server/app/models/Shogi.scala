@@ -135,8 +135,8 @@ object Shogi {
 
   def dropPiece(state: GameState, move: Drop): Try[GameState] = {
     if (move.piece.player == state.playerToMove && state.piecesInHand.hasInHand(move.piece))
-      state.board.pieceAt(move.destination) match {
-        case None => move.piece match {
+      if(state.board.pieceAt(move.destination).isEmpty {
+        move.piece match {
           case _: Pawn if fileHasUnpromotedPawn(state.board, state.playerToMove, move.destination.file) => Failure(new Exception())
           case _: Pawn if move.destination.rank == backRank(state.playerToMove) => Failure(new Exception())
           case _: Lance if move.destination.rank == backRank(state.playerToMove) => Failure(new Exception())
@@ -147,7 +147,8 @@ object Shogi {
             val newPiecesInHand = state.piecesInHand - move.piece
             Success(GameState(nextPlayer, newBoard, newPiecesInHand))
         }
-        case Some(_) => Failure(new Exception())
+      } else {
+        Failure(new Exception())
       }
     else
       Failure(new Exception())
@@ -156,7 +157,7 @@ object Shogi {
   def fileHasUnpromotedPawn(board: ShogiBoard, player: Player.Value, file: Int): Boolean = {
     val pieces = (1 to 9).flatMap(board.pieceAt(_, file))
     if (pieces.isEmpty) false else pieces.forall {
-      case Pawn(p, false) if p == player => true
+      case Pawn(p, false) => p == player
       case _ => false
     }
   }
