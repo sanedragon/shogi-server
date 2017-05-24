@@ -14,10 +14,7 @@ object Shogi {
     if (!isMoveValid(state, move)) {
       Failure(new Exception())
     } else {
-      val piecesInHand = state.board.pieceAt(move.destination) match {
-        case None => state.piecesInHand
-        case Some(p @ Piece(_)) => state.piecesInHand + p
-      }
+      val piecesInHand = state.board.pieceAt(move.destination).map(state.piecesInHand + _).getOrElse(state.piecesInHand)
       val Some(pieceToMove) = state.board.pieceAt(move.start)
       val piece = pieceToMove match {
         case x @ PromotablePiece(_, false) if move.promote => Piece.promotedPiece(x)
